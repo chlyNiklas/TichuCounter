@@ -9,22 +9,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.google.android.material.slider.RangeSlider;
 import com.google.android.material.slider.Slider;
 
-import ch.schreifuchs.tichucounter.databinding.FragmentFirstBinding;
+import ch.schreifuchs.tichucounter.databinding.FragmentPointsBinding;
 
-public class FirstFragment extends Fragment {
+public class PointsFragment extends Fragment {
 
-    private FragmentFirstBinding binding;
+    private FragmentPointsBinding binding;
 
     @Override
     public View onCreateView(
-            LayoutInflater inflater, ViewGroup container,
+            @NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState
     ) {
 
-        binding = FragmentFirstBinding.inflate(inflater, container, false);
+        binding = FragmentPointsBinding.inflate(inflater, container, false);
         return binding.getRoot();
 
     }

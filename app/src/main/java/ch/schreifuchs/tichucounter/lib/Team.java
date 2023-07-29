@@ -1,4 +1,4 @@
-package ch.schreifuchs.tichucounter;
+package ch.schreifuchs.tichucounter.lib;
 
 import java.util.ArrayList;
 import java.util.List;
