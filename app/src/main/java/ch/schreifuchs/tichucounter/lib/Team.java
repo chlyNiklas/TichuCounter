@@ -11,7 +11,7 @@ public class Team {
 
     public int getScore() {
         int score = 0;
-        for (Integer operation: scoreOperations) {
+        for (Integer operation : scoreOperations) {
             score += operation;
         }
         return score;
@@ -22,7 +22,9 @@ public class Team {
     }
 
     public void undo() {
-        scoreOperations.remove(-scoreOperations.size() -1);
+        int index = scoreOperations.size() - 1;
+        if (index >= 0) scoreOperations.remove(index);
+
     }
 }
 

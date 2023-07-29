@@ -15,6 +15,7 @@ import com.google.android.material.slider.Slider;
 import java.util.Objects;
 
 import ch.schreifuchs.tichucounter.databinding.FragmentPointsBinding;
+import ch.schreifuchs.tichucounter.lib.Team;
 import ch.schreifuchs.tichucounter.lib.ThreeWaySwitch;
 import ch.schreifuchs.tichucounter.lib.Tichu;
 import kotlin.Triple;
@@ -22,6 +23,10 @@ import kotlin.Triple;
 public class PointsFragment extends Fragment {
 
     private FragmentPointsBinding binding;
+    private final Triple<Integer, Tichu, ThreeWaySwitch>[] tichuSwitches = new Triple[4];
+    private final Team[] teams = new Team[2];
+
+    private final int[] currentBasePoints = new int[2];
 
     @Override
     public View onCreateView(
@@ -38,25 +43,28 @@ public class PointsFragment extends Fragment {
 
         super.onViewCreated(view, savedInstanceState);
 
+        teams[0] = new Team();
+        teams[1] = new Team();
+
+
         // Slider
         Slider pointsSlider = binding.pointsSlider;
         TextView labelTeamA = binding.pointsSliderLabelA;
         TextView labelTeamB = binding.pointsSliderLabelB;
         pointsSlider.addOnChangeListener((slider, value, fromUser) -> {
-            int[] values = {(int) value, (int) (100 - value)};
+            currentBasePoints[0] = (int) value;
+            currentBasePoints[1] = (int) (100 - value);
 
-            for (int i = 0; i < values.length; i++) {
-                if (values[i] < -25) values[i] = 0;
-                if (values[i] > 125) values[i] = 200;
+            for (int i = 0; i < currentBasePoints.length; i++) {
+                if (currentBasePoints[i] < -25) currentBasePoints[i] = 0;
+                if (currentBasePoints[i] > 125) currentBasePoints[i] = 200;
             }
 
-            labelTeamA.setText(String.valueOf(values[0]));
-            labelTeamB.setText(String.valueOf(values[1]));
+            labelTeamA.setText(String.valueOf(currentBasePoints[0]));
+            labelTeamB.setText(String.valueOf(currentBasePoints[1]));
         });
 
         // Tichu 3 way Switches
-
-        Triple<Integer, Tichu, ThreeWaySwitch>[] tichuSwitches = new Triple<>[4];
         tichuSwitches[0] = new Triple<>(0, Tichu.TICHU, binding.tichuA);
         tichuSwitches[1] = new Triple<>(0, Tichu.BIG_TICHU, binding.bigTichuA);
         tichuSwitches[2] = new Triple<>(1, Tichu.TICHU, binding.tichuB);
@@ -107,8 +115,58 @@ public class PointsFragment extends Fragment {
                 }
             });
         }
+        //save
+        binding.saveButton.setOnClickListener(e -> save());
 
+        //undo
+        binding.undoButton.setOnClickListener(e -> undo());
 
+    }
+
+    private void save() {
+        for (int i = 0; i < teams.length; i++) {
+            int score = currentBasePoints[i];
+            for (Triple<Integer, Tichu, ThreeWaySwitch> tichuSwitch : tichuSwitches
+            ) {
+                if (tichuSwitch.getFirst().equals(i)) {
+                    switch (tichuSwitch.getThird().getState()) {
+                        case TRUE:
+                            if (tichuSwitch.getSecond().equals(Tichu.BIG_TICHU)) {
+                                score += 200;
+                            } else {
+                                score += 100;
+                            }
+                            break;
+                        case FALSE:
+                            if (tichuSwitch.getSecond().equals(Tichu.BIG_TICHU)) {
+                                score -= 200;
+                            } else {
+                                score -= 100;
+                            }
+                            break;
+                    }
+                }
+            }
+            teams[i].addToScore(score);
+        }
+        reset();
+    }
+
+    private void reset() {
+        for (Triple<Integer, Tichu, ThreeWaySwitch> tichuSwitch : tichuSwitches) {
+            tichuSwitch.getThird().reset();
+        }
+        updateScore();
+    }
+    private void undo() {
+        for (Team team: teams) {
+            team.undo();
+        }
+        updateScore();
+    }
+    private void updateScore() {
+        binding.scoreA.setText(String.valueOf(teams[0].getScore()));
+        binding.scoreB.setText(String.valueOf(teams[1].getScore()));
     }
 
     @Override

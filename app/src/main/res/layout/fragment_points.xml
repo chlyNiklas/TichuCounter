@@ -141,17 +141,17 @@
         app:layout_constraintTop_toBottomOf="@+id/big_tichu_a" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/score_a"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/zero"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toStartOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintEnd_toStartOf="@+id/score_split"
+        app:layout_constraintTop_toTopOf="@+id/score_split" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/score_split"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -162,17 +162,17 @@
         app:layout_constraintTop_toBottomOf="@+id/divider" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/score_b"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:text="@string/zero"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10" />
+        app:layout_constraintStart_toEndOf="@+id/score_split"
+        app:layout_constraintTop_toTopOf="@+id/score_split" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/undo_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -182,12 +182,12 @@
         app:layout_constraintStart_toStartOf="@+id/guideline2" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:text="@string/save"
-        app:layout_constraintBottom_toBottomOf="@+id/button"
+        app:layout_constraintBottom_toBottomOf="@+id/undo_button"
         app:layout_constraintEnd_toStartOf="@+id/guideline3" />
 
     <ch.schreifuchs.tichucounter.lib.ThreeWaySwitch
