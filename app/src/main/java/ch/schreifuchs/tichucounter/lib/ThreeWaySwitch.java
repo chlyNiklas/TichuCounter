@@ -35,6 +35,7 @@ public class ThreeWaySwitch extends androidx.appcompat.widget.AppCompatSeekBar {
         this.setProgress(1);
         this.setMinWidth((int) (100 * getResources().getDisplayMetrics().density * 0.5f));
         setProgressTintBlendMode(BlendMode.CLEAR);
+        setProgressBackgroundTintList(ColorStateList.valueOf(Color.GRAY));
 
         super.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
@@ -42,6 +43,7 @@ public class ThreeWaySwitch extends androidx.appcompat.widget.AppCompatSeekBar {
                 if (onSeekBarChangeListener != null) {
                     onSeekBarChangeListener.onProgressChanged(seekBar, progress, b);
                 }
+                progress = seekBar.getProgress();
                 switch (progress) {
                     case 0:
                         setProgressBackgroundTintList(ColorStateList.valueOf(Color.RED));
