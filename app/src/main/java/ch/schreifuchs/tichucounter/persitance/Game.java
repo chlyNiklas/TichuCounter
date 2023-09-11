@@ -10,7 +10,7 @@ import java.time.Instant;
 @Entity
 public class Game {
     @PrimaryKey(autoGenerate = true)
-    private double id;
+    private long id;
     private Timestamp startedAt;
     private Timestamp endedAt;
 
@@ -18,11 +18,11 @@ public class Game {
         this.startedAt = new Timestamp(Instant.now().toEpochMilli());
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 

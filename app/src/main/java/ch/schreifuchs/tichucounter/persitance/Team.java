@@ -9,7 +9,7 @@ import java.time.Instant;
 @Entity
 public class Team {
     @PrimaryKey(autoGenerate = true)
-    private double id;
+    private long id;
     private String name;
     private String memberOne;
     private String memberTwo;
@@ -38,11 +38,11 @@ public class Team {
         this.memberTwo = memberTwo;
     }
 
-    public double getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(double id) {
+    public void setId(long id) {
         this.id = id;
     }
 

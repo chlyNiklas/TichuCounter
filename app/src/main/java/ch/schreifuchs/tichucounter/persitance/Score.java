@@ -16,10 +16,11 @@ public class Score {
     @PrimaryKey(autoGenerate = true)
     private long id;
     private int score;
-    private double game;
-    private double team;
+    private long game;
+    private long team;
     private Timestamp createdAt;
 
+    public Score(){}
     public Score(int score, Game game, Team team) {
         this.score = score;
         this.game = game.getId();
@@ -43,19 +44,19 @@ public class Score {
         this.score = score;
     }
 
-    public double getGame() {
+    public long getGame() {
         return game;
     }
 
-    public void setGame(double game) {
+    public void setGame(long game) {
         this.game = game;
     }
 
-    public double getTeam() {
+    public long getTeam() {
         return team;
     }
 
-    public void setTeam(double team) {
+    public void setTeam(long team) {
         this.team = team;
     }
 
