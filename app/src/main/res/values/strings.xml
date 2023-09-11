@@ -45,9 +45,11 @@
     <string name="team_a">A</string>
     <string name="team_b">B</string>
     <string name="tichu">Tichu</string>
-    <string name="big_tichu" >Grosses Tichu</string>
+    <string name="big_tichu">Grosses Tichu</string>
     <string name="zero">0</string>
     <string name="score_split">:</string>
-    <string name="undo" >Rückgängig</string>
-    <string name="save" >Speichern</string>
+    <string name="undo">Rückgängig</string>
+    <string name="save">Speichern</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

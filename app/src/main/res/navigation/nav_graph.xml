@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/PointsFragment">
+    app:startDestination="@id/StartFragment">
 
+
+    <fragment
+        android:id="@+id/StartFragment"
+        android:name="ch.schreifuchs.tichucounter.StartFragment"
+        android:label="@string/points_fragment_label"
+        tools:layout="@layout/fragment_start"/>
     <fragment
         android:id="@+id/PointsFragment"
         android:name="ch.schreifuchs.tichucounter.PointsFragment"

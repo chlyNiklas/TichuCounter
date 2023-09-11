@@ -20,4 +20,5 @@ public abstract class TichuDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+    public abstract GameDao getGameDao();
 }
